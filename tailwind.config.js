@@ -13,6 +13,9 @@ module.exports = {
       colors: {
         svelte: '#ff3e00',
       },
+      width: {
+        fit: 'fit-content',
+      }
     },
   },
   variants: {},

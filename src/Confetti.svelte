@@ -31,17 +31,21 @@ onMount(() => {
 
   loop();
 
+  document.body.classList.add('overflow-hidden');
+
   const btn = document.querySelector('#restart');
   btn.focus();
 
-  return () => cancelAnimationFrame(frame);
+  return () => {
+    cancelAnimationFrame(frame);
+    document.body.classList.remove('overflow-hidden');
+  };
 });
 const dispatch = createEventDispatcher();
 function restart() {
   dispatch('restart');
 }
 </script>
-
 {#each confetti as c}
   <span style="left: {c.x}%; top: {c.y}%; transform: scale({c.r})"
     >{c.character}</span
@@ -60,9 +64,6 @@ function restart() {
 </form>
 
 <style>
-:global(body) {
-  overflow: hidden;
-}
 
 span {
   position: absolute;

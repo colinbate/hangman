@@ -25,7 +25,7 @@ function reset() {
 
 {#if word}
   {#if result}
-    <div class="absolute inset-0">
+    <div class="fixed inset-0">
       <Confetti type={result} on:restart={reset} />
     </div>
   {/if}

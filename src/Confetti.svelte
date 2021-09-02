@@ -31,6 +31,9 @@ onMount(() => {
 
   loop();
 
+  const btn = document.querySelector('#restart');
+  btn.focus();
+
   return () => cancelAnimationFrame(frame);
 });
 const dispatch = createEventDispatcher();
@@ -48,7 +51,10 @@ function restart() {
   on:submit|preventDefault={restart}
   class="absolute grid inset-0 place-content-center"
 >
-  <button type="submit" class="px-6 py-3 bg-svelte text-white text-xl rounded"
+  <button
+    id="restart"
+    type="submit"
+    class="px-6 py-3 bg-svelte text-white ring-black focus:outline-none focus:ring-4 dark:ring-white text-xl rounded"
     >{btn}</button
   >
 </form>

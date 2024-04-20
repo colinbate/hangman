@@ -14,10 +14,10 @@ async function select(cat: { name: string; words: string[] }) {
     const index = rand(cat.words.length);
     chosen = cat.words[index];
   } else {
-    chosen = await dd.show() ?? '';
+    chosen = await dd?.show() ?? '';
   }
   if (chosen) {
-    onword(cat.name, chosen.toLowerCase());
+    onword(cat.name, chosen.toLowerCase().trim());
   }
 }
 

@@ -4,7 +4,7 @@
   let dialog: HTMLDialogElement | undefined;
   let value = $state('');
   let resolve: ((v: string | undefined) => void) | undefined;
-  export function show() {
+  export function show(): Promise<string | undefined> {
     if (dialog) {
       dialog.showModal();
       return new Promise((res) => resolve = res);

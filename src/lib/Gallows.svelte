@@ -1,15 +1,12 @@
 <script lang="ts">
-import { createEventDispatcher } from 'svelte';
 import Stickman from './Stickman.svelte';
-const dispatch = createEventDispatcher();
-export let word = '';
-export let category = '';
-const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+let { word = '', category = '', onresult }: { word: string; category: string; onresult: (result: string) => void } = $props();
+const letters = $state('ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   .split('')
-  .map((letter) => ({ letter, used: false }));
-let blanks: string[] = Array(word.length).fill('_');
+  .map((letter) => ({ letter, used: false })));
+let blanks: string[] = $state(Array(word.length).fill('_'));
 let found = 0;
-let step = 0;
+let step = $state(0);
 function chooseLetter(letter: string) {
   const uc = letter.toUpperCase();
   const index = letters.findIndex((c) => c.letter === uc);
@@ -27,7 +24,7 @@ function chooseLetter(letter: string) {
     }
     blanks = blanks;
     if (found === word.length) {
-      dispatch('win');
+      onresult('win');
     }
   } else {
     step += 1;
@@ -38,7 +35,7 @@ function chooseLetter(letter: string) {
         }
       }
       blanks = blanks;
-      dispatch('lose');
+      onresult('lose');
     }
   }
 }
@@ -75,6 +72,6 @@ function type(ev: KeyboardEvent) {
     class:!bg-gray-700={letter.used}
     class:cursor-not-allowed={letter.used}
     disabled={letter.used}
-    on:click={() => chooseLetter(letter.letter)}>{letter.letter}</button
+    onclick={() => chooseLetter(letter.letter)}>{letter.letter}</button
   >
 {/each}

@@ -1,23 +1,21 @@
-> This repo is now using `main` as the default branch.
-# Svelte + TS + Tailwind 2.2 app
+# Svelte 5 + TS + Tailwind 3.4 app
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/colinbate/svelte-ts-tailwind-template and is based on the official Svelte template with TypeScript pre-enabled and Tailwind CSS configured. Uses Tailwind CSS 2.1 with the JIT compiler enabled. **The JIT feature is in preview and not tied to SemVer, so I've set it to 2.2.2 specifically.**
+> At this time (Jan 2024) Svelte 5 is still experimental. You may see some warnings when `npm install`ing.
 
-> Note that this isn't a SvelteKit app, this is a vanilla Svelte template with the above mentioned technologies pre-installed.
+This is a project template for [Svelte](https://svelte.dev) (v5) apps. It lives at https://github.com/colinbate/svelte-ts-tailwind-template and is based on the official Svelte template via `create-vite` with TypeScript selected and Tailwind CSS added via `svelte-add`. The dependencies were then updated to latest (as of the latest commit). It is getting pretty easy to get this stack working without this template, but may save you a bit of time.
 
-> ## Important
-> The build/watch machanism has changed in TailwindCSS 2.2 and as such it does not work properly with Rollup. I've fixed it, but in order to not break it, do not include a glob in the Tailwind purge config that targets the `public` folder.
+> Note that this isn't a SvelteKit app, this is a vanilla Svelte template with the above mentioned technologies pre-installed. Now that SvelteKit is production ready, it is an option you may want to consider for any larger apps.
 
 To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
 ```bash
-npx degit colinbate/svelte-ts-tailwind-template svelte-app
+npx degit colinbate/svelte-ts-tailwind-template#svelte5 svelte-app
 cd svelte-app
 ```
 
-Alternatively, if you are currently on GitHub, you can click the "Use this template" button at the top of this page.
+<del>Alternatively, if you are currently on GitHub, you can click the "Use this template" button at the top of this page.</del> (This doesn't seem to work for non-primary branches)
 
-*Note that you will need to have [Node.js](https://nodejs.org) >=12.13 installed.*
+*Note that you will need to have [Node.js](https://nodejs.org) >=18 installed.*
 
 ## Get started
 
@@ -28,16 +26,13 @@ cd svelte-app
 npm install
 ```
 
-...then start [Rollup](https://rollupjs.org):
+...then start [Vite](https://vitejs.dev/):
 
 ```bash
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
+Navigate to [localhost:5173](http://localhost:5173). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
 ## Building and running in production mode
 
@@ -47,20 +42,6 @@ To create an optimised version of the app:
 npm run build
 ```
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+You can serve up the newly built app with `npm run preview`. This allows you to ensure nothing was damaged in the production build process.
 
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-TypeScript has already been enabled in this template.
-
+You can then host the app with whichever static host you prefer.

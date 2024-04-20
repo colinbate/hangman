@@ -1,6 +1,6 @@
 <script lang="ts">
 import { draw } from './betterdraw';
-export let step = 0;
+let { step = 0 } = $props();
 </script>
 
 <svg

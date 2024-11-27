@@ -1,8 +1,5 @@
-import { cubicInOut } from 'svelte/easing';
-import type {
-  EasingFunction,
-  TransitionConfig,
-} from 'svelte/types/runtime/transition';
+import { cubicInOut } from "svelte/easing";
+import type { EasingFunction, TransitionConfig } from "svelte/transition";
 
 export interface DrawParams {
   delay?: number;
@@ -15,7 +12,7 @@ export function draw(
   node: SVGElement & { getTotalLength(): number },
   { delay = 0, speed, duration, easing = cubicInOut }: DrawParams = {}
 ): TransitionConfig {
-  const has_end_caps = getComputedStyle(node).strokeLinecap !== 'butt';
+  const has_end_caps = getComputedStyle(node).strokeLinecap !== "butt";
   const cap_size = has_end_caps
     ? parseInt(getComputedStyle(node).strokeWidth)
     : 0;
@@ -27,7 +24,7 @@ export function draw(
     } else {
       duration = len / speed;
     }
-  } else if (typeof duration === 'function') {
+  } else if (typeof duration === "function") {
     duration = duration(len);
   }
 
